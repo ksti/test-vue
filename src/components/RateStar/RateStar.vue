@@ -5,7 +5,7 @@
     <ul ref="rateContainer"
         class="rate-container"
         :class="rateClass"
-        @touchstart.stop="handleStart"
+        @touchstart.stop.prevent="handleStart"
         @touchmove.stop.prevent="handleMove"
         @touchend.stop="handleEnd"
         @mousedown.stop="handleStart"
@@ -95,6 +95,7 @@
         },
         methods: {
             handleStart(e) {
+                e.preventDefault()
                 if (!this.disabled) {
                     if (e.type.indexOf(EVENT_TYPE_MOUSE) > -1) {
                         this.mousePressed = true
